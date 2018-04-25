@@ -7,15 +7,15 @@ const Store = new Vuex.Store({
   state: {
     addsList: [
       {
-        id: 1,
+        id: '1',
         name: 'test1'
       },
       {
-        id: 2,
+        id: '2',
         name: 'test2'
       },
       {
-        id: 3,
+        id: '3',
         name: 'test3'
       }
     ],
@@ -34,15 +34,22 @@ const Store = new Vuex.Store({
       context.commit('updateAddsList', params.data)
     },
     loadById (context, params) {
-      let result = {}
-
       context.state.addsList.forEach(item => {
         if (item.id === params.id) {
-          result = item
+          let editedItem = {}
+          Object.assign(editedItem, item)
+          context.commit('updateAddItem', editedItem)
+        }
+      })
+    },
+    save (context, params) {
+      context.state.addsList.forEach(item => {
+        if (item.id === params.item.id) {
+          item.name = params.item.name
         }
       })
 
-      context.commit('updateAddItem', result)
+      context.commit('updateAddsList', context.state.addsList)
     }
   }
 })
