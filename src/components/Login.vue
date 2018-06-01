@@ -7,7 +7,7 @@
             <input type="text" name="login" v-model="login">
         </div>
         <div>
-            <input type="password" name="pass" v-model="pass">
+            <input type="password" name="password" v-model="password">
         </div>
         <div>
             <button @click="loginAction">Login</button>
@@ -17,18 +17,22 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Login',
   data () {
     return {
-      login: 'test',
-      pass: 'test'
+      login: 'test@test.com',
+      password: 'test'
     }
   },
   methods: {
     loginAction: function () {
-      console.log('Login: ' + this.login)
-      console.log('Pass: ' + this.pass)
+      console.log(JSON.stringify(this.$data))
+      return axios.post('http://back.loc:81/login', JSON.stringify(this.$data), {withCredentials: true})
+        .then(response => {
+          console.log(response.data)
+        })
     }
   },
   beforeCreate: function () {
