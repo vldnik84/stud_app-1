@@ -19,7 +19,7 @@ const Store = new Vuex.Store({
         name: 'test3'
       }
     ],
-    addItem: {}
+    addItem: { }
   },
   mutations: {
     updateAddsList (state, data) {
@@ -36,7 +36,7 @@ const Store = new Vuex.Store({
     loadById (context, params) {
       context.state.addsList.forEach(item => {
         if (item.id === params.id) {
-          let editedItem = {}
+          let editedItem = { }
           Object.assign(editedItem, item)
           context.commit('updateAddItem', editedItem)
         }

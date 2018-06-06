@@ -5,11 +5,11 @@
 </template>
 
 <script>
-export default {
-  name: 'Page404',
-  data () {
-    return {
+  export default {
+    name: 'Page404',
+    data () {
+      return {
+      }
     }
   }
-}
 </script>
