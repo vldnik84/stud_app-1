@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <header class="header">
     <nav class="header-navbar light-blue">

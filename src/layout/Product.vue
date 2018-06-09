@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <div class="product text-align-left">
     <div class="product-image"><img v-bind:src="productPr.image" alt=""></div>

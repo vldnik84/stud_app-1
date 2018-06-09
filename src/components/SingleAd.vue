@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <div class="hello">
     <h1>Single Add page</h1>
@@ -5,11 +6,11 @@
 </template>
 
 <script>
-export default {
-  name: 'SingleAdd',
-  data () {
-    return {
+  export default {
+    name: 'SingleAd',
+    data () {
+      return {
+      }
     }
   }
-}
 </script>

@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <label>
     <input class="with-gap" v-bind:name="this.sortParam.name" v-bind:value="this.sortParam.val"

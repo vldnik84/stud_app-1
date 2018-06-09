@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <section class="middle">
     <div class="container">

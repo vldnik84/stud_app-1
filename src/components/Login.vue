@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <div class="hello">
     <h1>Login page</h1>

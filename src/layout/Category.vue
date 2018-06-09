@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <div class="dropdown-section">
     <h2 class="dropdown-title">{{ categorySc.name }}</h2>

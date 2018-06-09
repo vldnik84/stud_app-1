@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 export default {
   sortOptions: [
     { id: 0, name: 'Which ads should go first:' },

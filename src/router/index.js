@@ -1,9 +1,11 @@
+/* eslint-disable indent */
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import AddsList from '@/components/AddsList'
+import AdsList from '@/components/AdsList'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import SingleAdd from '@/components/SingleAdd'
+import SingleAd from '@/components/SingleAd'
 import AddForm from '@/components/AddForm'
 import Page404 from '@/components/Page404'
 
@@ -13,8 +15,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'AddsList',
-      component: AddsList
+      name: 'AdsList',
+      component: AdsList
     },
     {
       path: '/login',
@@ -27,9 +29,9 @@ export default new Router({
       component: Register
     },
     {
-      path: '/add:id(\\d+)',
-      name: 'SingleAdd',
-      component: SingleAdd
+      path: '/ad:id(\\d+)',
+      name: 'SingleAd',
+      component: SingleAd
     },
     {
       path: '/:id(\\d+)',

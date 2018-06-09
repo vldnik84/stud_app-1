@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <div id="app">
     <div id="wrapper">

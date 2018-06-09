@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <footer class="page-footer orange darken-1">
     <div class="footer-copyright">

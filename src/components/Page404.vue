@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <div>
     <h1>Page not found</h1>

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -8,19 +9,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+  import { mapState } from 'vuex'
 
-export default {
-  name: 'AddsList',
-  data () {
-    return {
-      msg: 'Welcome to AddsList'
+  export default {
+    name: 'AdsList',
+    data () {
+      return {
+        msg: 'Welcome to AdsList'
+      }
+    },
+    computed: {
+      ...mapState({
+        list: 'adsList'
+      })
     }
-  },
-  computed: {
-    ...mapState({
-      list: 'addsList'
-    })
   }
-}
 </script>

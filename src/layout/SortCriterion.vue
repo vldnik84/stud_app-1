@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <div class="sort-options">{{ sortCriterion.title }}<br>
     <SortParam

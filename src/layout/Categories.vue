@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable indent */
 <template>
   <div>
     <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
