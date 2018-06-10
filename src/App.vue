@@ -3,23 +3,20 @@
   <div id="app">
     <div id="wrapper">
       <Header></Header>
-      <Main></Main>
-      <router-view/>
+      <router-view />
       <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
-  import Header from './layout/Header'
-  import Main from './layout/Main'
-  import Footer from './layout/Footer'
+  import Header from './components/layout/Header'
+  import Footer from './components/layout/Footer'
 
   export default {
     name: 'App',
     components: {
       Header,
-      Main,
       Footer
     }
   }

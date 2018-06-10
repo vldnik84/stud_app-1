@@ -83,5 +83,14 @@ export default {
     { id: 2, name: '3' },
     { id: 3, name: '4' },
     { id: 4, name: '5' }
+  ],
+
+  signups: [
+    { id: 0, name: 'login', type: 'email', value: '', icon: 'account_circle', label: 'E-mail address', descr: 'enter your e-mail address' },
+    { id: 1, name: 'password', type: 'text', value: '', icon: 'vpn_key', label: 'Password', descr: 'enter your password' },
+    { id: 2, name: 'confirm_pass', type: 'text', value: '', icon: 'vpn_key', label: 'Repeat password', descr: 'confirm your password' },
+    { id: 3, name: 'first_name', type: 'text', value: '', icon: 'person', label: 'First name', descr: 'enter your first name' },
+    { id: 4, name: 'last_name', type: 'text', value: '', icon: 'person', label: 'Last name', descr: 'enter your last name' },
+    { id: 5, name: 'phone', type: 'text', value: '', icon: 'phone', label: 'Phone number', descr: 'enter your phone number' }
   ]
 }

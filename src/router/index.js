@@ -29,11 +29,13 @@ export default new Router({
       component: Register
     },
     {
+      /* Original - /ad:id(\d+) */
       path: '/ad:id(\\d+)',
       name: 'SingleAd',
       component: SingleAd
     },
     {
+      /* Original - /:id(\d+) */
       path: '/:id(\\d+)',
       name: 'AddForm',
       component: AddForm
