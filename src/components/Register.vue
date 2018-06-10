@@ -20,13 +20,13 @@
 
 <script>
   import CFG from './layout/Params'
-  import Signups from './layout/Signups'
+  import Signup from './layout/Signup'
 
   export default {
     name: 'Register',
 
     components: {
-      Signups
+      Signup
     },
 
     data () {

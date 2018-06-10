@@ -10,16 +10,17 @@ export default {
 
   products: [
     { id: 0,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
+      name: 'Samsung S7 Edge Snapdragon',
       price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      descr: 'Beautifully designed inside and out, the Samsung Galaxy S7 edge exceeds your expectations. ' +
+      'The slim dual-edge design ensures a great fit and feel whether in your hands or your pocket.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 1,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      name: 'Audi Q7 2.0 TFSI',
+      price: 100000,
+      descr: 'The Q7 is the first Audi SUV to use very-high-speed FlexRay optical fiber data bus technology, ' +
+      'which interconnects all electrical/electronic systems, particularly the latest generation ' +
+      'Multi Media Interface, Adaptive Air Suspension, and the multitude of new driver assistance systems.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 2,
       name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
@@ -28,16 +29,17 @@ export default {
       ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
       image: 'http://via.placeholder.com/150x150' },
     { id: 3,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      name: 'ASUS GL503VM-GZ040T',
+      price: 2000,
+      descr: 'With up to the latest 8th Gen Intel® Core™ processors and NVIDIA® GeForce® GTX 10-Series graphics, ' +
+      'ROG Strix GL503 has all the necessary tools you need for gaming mastery. So gear up, stand your ground, and ' +
+      'prepare for combat!',
       image: 'http://via.placeholder.com/150x150' },
     { id: 4,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      name: 'Xiaomi Stratos',
+      price: 230,
+      descr: 'Amazfit Stratos is a premium multisport GPS smartwatch with 5 ATM water resistance, VO2max fitness ' +
+      'level analysis, heart rate sensor, and transflective always-on color touch display.',
       image: 'http://via.placeholder.com/150x150' }
   ],
 
@@ -86,11 +88,11 @@ export default {
   ],
 
   signups: [
-    { id: 0, name: 'login', type: 'email', value: '', icon: 'account_circle', label: 'E-mail address', descr: 'enter your e-mail address' },
-    { id: 1, name: 'password', type: 'text', value: '', icon: 'vpn_key', label: 'Password', descr: 'enter your password' },
-    { id: 2, name: 'confirm_pass', type: 'text', value: '', icon: 'vpn_key', label: 'Repeat password', descr: 'confirm your password' },
-    { id: 3, name: 'first_name', type: 'text', value: '', icon: 'person', label: 'First name', descr: 'enter your first name' },
-    { id: 4, name: 'last_name', type: 'text', value: '', icon: 'person', label: 'Last name', descr: 'enter your last name' },
-    { id: 5, name: 'phone', type: 'text', value: '', icon: 'phone', label: 'Phone number', descr: 'enter your phone number' }
+    { id: 0, data: '', name: 'login', type: 'email', icon: 'account_circle', label: 'E-mail address', descr: 'enter your e-mail address' },
+    { id: 1, data: '', name: 'password', type: 'text', icon: 'vpn_key', label: 'Password', descr: 'enter your password' },
+    { id: 2, data: '', name: 'confirm_pass', type: 'text', icon: 'vpn_key', label: 'Repeat password', descr: 'confirm your password' },
+    { id: 3, data: '', name: 'first_name', type: 'text', icon: 'person', label: 'First name', descr: 'enter your first name' },
+    { id: 4, data: '', name: 'last_name', type: 'text', icon: 'person', label: 'Last name', descr: 'enter your last name' },
+    { id: 5, data: '', name: 'phone', type: 'text', icon: 'phone', label: 'Phone number', descr: 'enter your phone number' }
   ]
 }

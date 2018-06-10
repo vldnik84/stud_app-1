@@ -5,8 +5,13 @@
       <div class="row">
         <!--<form class="auth-form s4 col offset-s4"> <!-- action="" -->
 
-          <Signups task="login" v-bind:signups="signups" v-on:change="loginAction"></Signups>
-          <br>
+          <Signup v-for="signup in signups"
+                  v-bind:key="signup.id"
+                  v-bind:value="signup"
+                  v-on:signup-value="resVal[signup.name]">
+          </Signup>
+
+          <br><!--  -->
           <div class="input-field">
             <button v-on:click="loginAction" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
           </div>
@@ -20,25 +25,30 @@
 
 <script>
   import axios from 'axios'
-  import Signups from './layout/Signups'
+  import Signup from './layout/Signup'
   import CFG from './layout/Params'
 
   export default {
     name: 'Login',
 
     components: {
-      Signups
+      Signup
     },
 
     data () {
       return {
-        signups: CFG['signups'].slice(0, 2)
+        signups: CFG['signups'].slice(0, 2),
+        resVal: {
+          login: '',
+          password: ''
+        },
+        iter: Number
       }
     },
 
     methods: {
-      loginAction: function (signup_data) {
-        console.log(JSON.stringify(signup_data))
+      loginAction: function () {
+        console.log(JSON.stringify(this.$data.resVal))
 
         /*return axios.post('http://back.loc:81/login', JSON.stringify(this.$data.login, this.$data.password), {withCredentials: true})
           .then(response => {
