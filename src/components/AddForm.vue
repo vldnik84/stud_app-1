@@ -50,17 +50,13 @@
               <div class="buttons">
                 <a href="#!" class="btn waves-effect waves-light" v-on:click="save()">
                   Save
-                  <i class="material-icons sufix">
-                    save
-                  </i>
+                  <i class="material-icons sufix">save</i>
                 </a>
 
                 <router-link :to="{name: 'AdsList'}">
                   <a href="#!" class="btn waves-effect waves-light">
                     Cancel
-                    <i class="material-icons sufix">
-                      cancel
-                    </i>
+                    <i class="material-icons sufix">cancel</i>
                   </a>
                 </router-link>
               </div>
@@ -80,11 +76,13 @@
 
   export default {
     name: 'AddForm',
+
     computed: {
       ...mapState({
         item: 'addItem'
       })
     },
+
     methods: {
       save: function () {
         this.$store.dispatch('save', {item: this.item})
@@ -93,6 +91,7 @@
           })
       }
     },
+
     created () {
       this.$store.dispatch('loadById', {id: this.$route.params.id})
     }

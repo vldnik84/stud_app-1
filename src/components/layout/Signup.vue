@@ -22,14 +22,18 @@
 
     data: function() {
       return {
-        signup: this.value
+        signup: Object
       }
+    },
+
+    created: function () {
+      let signup = this.value
     },
 
     computed: {
       signupVal: {
         get: function () {
-          return this.signup
+          return signup
         },
         set: function (newValue) {
           console.log(newValue)

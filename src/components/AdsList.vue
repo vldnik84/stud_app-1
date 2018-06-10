@@ -12,15 +12,19 @@
           <form class="search-form">
             <div class="input-field">
               <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Search</label><i class="material-icons sufix">search</i>
+              <label for="icon_prefix2">Search</label>
+              <i class="material-icons sufix">search</i>
             </div>
           </form>
         </div>
 
         <div class="col s2">
           <div class="switch">
-            <label>Inactive
-              <input type="checkbox"><span class="lever"></span>Active
+            <label>
+              Inactive
+              <input type="checkbox">
+              <span class="lever"></span>
+              Active
             </label>
           </div>
         </div>
@@ -29,7 +33,14 @@
           <SortOptions v-bind:options="CFG.sortOptions"></SortOptions>
         </div>
 
-        <div class="col s2 text-right"><a href="#!" class="btn btn waves-effect waves-light">Add new<i class="material-icons sufix">add</i></a></div>
+        <div class="col s2 text-right">
+          <router-link :to="{name: 'AddForm'}">
+            <a href="#!" class="btn btn waves-effect waves-light">
+              <span>Add new</span>
+              <i class="material-icons sufix">add</i>
+            </a>
+          </router-link>
+        </div>
       </div>
 
       <Products v-bind:products="CFG.products"></Products>

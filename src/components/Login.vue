@@ -8,7 +8,7 @@
           <Signup v-for="signup in signups"
                   v-bind:key="signup.id"
                   v-bind:value="signup"
-                  v-on:signup-value="resVal[signup.name]">
+                  v-on:signup-value="getValue(signup.id)">
           </Signup>
 
           <br><!--  -->
@@ -41,8 +41,13 @@
         resVal: {
           login: '',
           password: ''
-        },
-        iter: Number
+        }
+      }
+    },
+
+    computed: {
+      getValue: function (newVal) {
+        console.log(newVal)
       }
     },
 
