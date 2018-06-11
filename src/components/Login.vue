@@ -3,20 +3,20 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <!--<form class="auth-form s4 col offset-s4"> <!-- action="" -->
+        <form action="" class="auth-form s4 col offset-s4">
 
           <Signup v-for="signup in signups"
                   v-bind:key="signup.id"
                   v-bind:value="signup"
-                  v-on:signup-value="getValue(signup.id)">
+                  v-on:signup-value="getValue">
           </Signup>
 
-          <br><!--  -->
           <div class="input-field">
             <button v-on:click="loginAction" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
           </div>
           <div class="text-center"><a href="#!">Forgot your login data?</a></div>
-        <!--</form>-->
+
+        </form>
         <br>
       </div>
     </div>
@@ -46,8 +46,13 @@
     },
 
     computed: {
-      getValue: function (newVal) {
-        console.log(newVal)
+      getValue: {
+        get: function () {
+          return this.$data.resVal
+        },
+        set: function (newValue) {
+          console.log(newValue)
+        }
       }
     },
 
@@ -64,9 +69,5 @@
           })*/
       }
     }
-
-    /*mounted: function () {
-      console.log(this.signup_data)
-    }*/
   }
 </script>

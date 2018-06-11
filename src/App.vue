@@ -4,8 +4,8 @@
     <div id="wrapper">
       <Header></Header>
       <router-view />
-      <Footer></Footer>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
