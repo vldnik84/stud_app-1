@@ -3,12 +3,12 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <form action="" class="auth-form s4 col offset-s4">
+        <!--<form action="" class="auth-form s4 col offset-s4">--><!--v-bind:value="signup"-->
 
-          <Signup v-for="signup in signups"
+          <Signup v-for="(signup, i) in signups"
                   v-bind:key="signup.id"
-                  v-bind:value="signup"
-                  v-on:signup-value="getValue">
+                  v-bind:sign_param="signup"
+                  v-on:model="sign_val[i]">
           </Signup>
 
           <div class="input-field">
@@ -16,7 +16,7 @@
           </div>
           <div class="text-center"><a href="#!">Forgot your login data?</a></div>
 
-        </form>
+        <!--</form>-->
         <br>
       </div>
     </div>
@@ -38,23 +38,20 @@
     data () {
       return {
         signups: CFG['signups'].slice(0, 2),
-        resVal: {
-          login: '',
-          password: ''
-        }
+        sign_val: ['login', 'password']
       }
     },
 
-    computed: {
+    /*computed: {
       getValue: {
-        get: function () {
-          return this.$data.resVal
+        get: function (obj) {
+          return obj
         },
         set: function (newValue) {
           console.log(newValue)
         }
       }
-    },
+    },*/
 
     methods: {
       loginAction: function () {
