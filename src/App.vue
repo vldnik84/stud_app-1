@@ -2,10 +2,10 @@
 <template>
   <div id="app">
     <div id="wrapper">
-      <Header></Header>
+      <Header />
       <router-view />
     </div>
-    <Footer></Footer>
+    <Footer />
   </div>
 </template>
 

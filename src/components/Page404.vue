@@ -1,8 +1,10 @@
 /* eslint-disable indent */
 <template>
-  <div>
-    <h1>Page not found</h1>
-  </div>
+  <section class="middle">
+    <div class="container">
+      <h1>Page not found</h1>
+    </div>
+  </section>
 </template>
 
 <script>

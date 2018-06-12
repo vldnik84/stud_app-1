@@ -21,7 +21,8 @@ const Store = new Vuex.Store({
         name: 'test3'
       }
     ],
-    addItem: { }
+    addItem: { },
+    loggedIn: false
   },
   mutations: {
     updateAdsList (state, data) {
@@ -29,6 +30,9 @@ const Store = new Vuex.Store({
     },
     updateAddItem (state, data) {
       state.addItem = data
+    },
+    updateLoggedState (state, data) {
+      state.loggedIn = data
     }
   },
   actions: {
@@ -52,6 +56,9 @@ const Store = new Vuex.Store({
       })
 
       context.commit('updateAdsList', context.state.adsList)
+    },
+    login (context, params) {
+      context.commit('updateLoggedState', params.data)
     }
   }
 })
