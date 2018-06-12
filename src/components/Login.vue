@@ -5,11 +5,8 @@
       <div class="row">
         <!--<form action="" class="auth-form s4 col offset-s4">--><!--v-bind:value="signup"-->
 
-          <Signup v-for="(signup, i) in signups"
-                  v-bind:key="signup.id"
-                  v-bind:sign_param="signup"
-                  v-on:model="sign_val[i]">
-          </Signup>
+          <Signup v-model="login_val"></Signup>
+          <Signup v-model="password_val"></Signup>
 
           <div class="input-field">
             <button v-on:click="loginAction" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
@@ -37,25 +34,43 @@
 
     data () {
       return {
-        signups: CFG['signups'].slice(0, 2),
-        sign_val: ['login', 'password']
+        login: [].filter.call(CFG['signups'], function(item) {
+          if (item.name === 'login') {
+            return item
+          }
+        })[0],
+        password: [].filter.call(CFG['signups'], function(item) {
+          if (item.name === 'password') {
+            return item
+          }
+        })[0]
       }
     },
 
-    /*computed: {
-      getValue: {
-        get: function (obj) {
-          return obj
+    computed: {
+      login_val: {
+        get: function () {
+          return this.login
         },
-        set: function (newValue) {
-          console.log(newValue)
+        set: function (val) {
+          this.login.value = val
+          return val
+        }
+      },
+      password_val: {
+        get: function () {
+          return this.password
+        },
+        set: function (val) {
+          this.password.value = val
+          return val
         }
       }
-    },*/
+    },
 
     methods: {
       loginAction: function () {
-        console.log(JSON.stringify(this.$data.resVal))
+        console.log(JSON.stringify(this.login.value))
 
         /*return axios.post('http://back.loc:81/login', JSON.stringify(this.$data.login, this.$data.password), {withCredentials: true})
           .then(response => {
