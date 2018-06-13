@@ -8,22 +8,9 @@ Vue.use(Vuex)
 const Store = new Vuex.Store({
   state: {
     backAddress: 'http://back.loc:81/',
-    adsList: [
-      {
-        id: '1',
-        name: 'test1'
-      },
-      {
-        id: '2',
-        name: 'test2'
-      },
-      {
-        id: '3',
-        name: 'test3'
-      }
-    ],
+    adsList: [ ],
     addItem: { },
-    loggedIn: false
+    loginStatus: false
   },
   mutations: {
     updateAdsList (state, data) {
@@ -32,13 +19,14 @@ const Store = new Vuex.Store({
     updateAddItem (state, data) {
       state.addItem = data
     },
-    updateLoggedState (state, data) {
-      state.loggedIn = data
+    updateLoginStatus (state, data) {
+      state.loginStatus = data
     }
   },
   actions: {
+    /* original - context.commit('updateAdsList', params.data) */
     setList (context, params) {
-      context.commit('updateAdsList', params.data)
+      context.commit('updateAdsList', params)
     },
     loadById (context, params) {
       context.state.adsList.forEach(item => {
@@ -59,7 +47,7 @@ const Store = new Vuex.Store({
       context.commit('updateAdsList', context.state.adsList)
     },
     login (context, param) {
-      context.commit('updateLoggedState', param)
+      context.commit('updateLoginStatus', param)
     }
   }
 })

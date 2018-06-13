@@ -3,7 +3,7 @@
   <div>
     <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
       <i class="material-icons sufix">menu</i></a>
-    <div id="dropdown1" class="dropdown-content"><a href="#!" class="right all-link">All</a>
+    <div id="dropdown1" class="dropdown-content"><a class="right all-link">All</a>
       <Category v-for="section in categories"
                 v-bind:key="section.id"
                 v-bind:categorySc="section">
@@ -22,6 +22,7 @@
       Category
     },
 
+    // TODO Set type and required property - REMOVE COMPLETELY
     props: ['categories']
   }
 </script>

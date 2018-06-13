@@ -5,12 +5,53 @@
       <div class="row">
         <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
 
-          <Signup v-model="loginVal"></Signup>
-          <Signup v-model="firstNameVal"></Signup>
-          <Signup v-model="lastNameVal"></Signup>
-          <Signup v-model="phoneVal"></Signup>
-          <Signup v-model="passwordVal"></Signup>
-          <Signup v-model="confirmPasswordVal"></Signup>
+          <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="login" type="email" class="validate"
+                   required="" aria-required="true" v-model="register_data.login">
+            <label for="login">E-mail address</label>
+            <span class="helper-text" data-error="incorrect data">enter your e-mail address</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">person</i>
+            <input id="first_name" type="text" class="validate"
+                   required="" aria-required="true" v-model="register_data.first_name">
+            <label for="first_name">First name</label>
+            <span class="helper-text" data-error="incorrect data">enter your first name</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">person</i>
+            <input id="last_name" type="text" class="validate"
+                   required="" aria-required="true" v-model="register_data.last_name">
+            <label for="last_name">Last name</label>
+            <span class="helper-text" data-error="incorrect data">enter your last name</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">phone</i>
+            <input id="phone" type="tel" class="validate"
+                   required="" aria-required="true" v-model="register_data.phone">
+            <label for="phone">Phone number</label>
+            <span class="helper-text" data-error="incorrect data">enter your phone number</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="password" type="password" class="validate"
+                   required="" aria-required="true" v-model="register_data.password">
+            <label for="password">Password</label>
+            <span class="helper-text" data-error="incorrect data">enter your password</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="confirm_password" type="password" class="validate"
+                   required="" aria-required="true" v-model="register_data.confirm_password">
+            <label for="confirm_password">Confirm password</label>
+            <span class="helper-text" data-error="incorrect data">reenter your password</span>
+          </div>
 
           <div class="input-field">
             <button v-on:click="registerAction" type="submit" class="btn btn-max waves-effect waves-light">Register</button>
@@ -23,49 +64,14 @@
 </template>
 
 <script>
-  import CFG from './layout/Params'
-  import Signup from './layout/Signup'
   import axios from 'axios'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'Register',
 
-    components: {
-      Signup
-    },
-
     data () {
       return {
-        login: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'login') {
-            return item
-          }
-        })[0],
-        first_name: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'first_name') {
-            return item
-          }
-        })[0],
-        last_name: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'last_name') {
-            return item
-          }
-        })[0],
-        phone: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'phone') {
-            return item
-          }
-        })[0],
-        password: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'password') {
-            return item
-          }
-        })[0],
-        confirm_password: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'confirm_password') {
-            return item
-          }
-        })[0],
         register_data: {
           login: '',
           first_name: '',
@@ -80,61 +86,7 @@
     computed: {
       ...mapState({
         back_address: 'backAddress'
-      }),
-      loginVal: {
-        get: function () {
-          return this.login
-        },
-        set: function (val) {
-          this.login.value = val
-          this.register_data.login = val
-        }
-      },
-      firstNameVal: {
-        get: function () {
-          return this.first_name
-        },
-        set: function (val) {
-          this.first_name.value = val
-          this.register_data.first_name = val
-        }
-      },
-      lastNameVal: {
-        get: function () {
-          return this.last_name
-        },
-        set: function (val) {
-          this.last_name.value = val
-          this.register_data.last_name = val
-        }
-      },
-      phoneVal: {
-        get: function () {
-          return this.phone
-        },
-        set: function (val) {
-          this.phone.value = val
-          this.register_data.phone = val
-        }
-      },
-      passwordVal: {
-        get: function () {
-          return this.password
-        },
-        set: function (val) {
-          this.password.value = val
-          this.register_data.password = val
-        }
-      },
-      confirmPasswordVal: {
-        get: function () {
-          return this.confirm_password
-        },
-        set: function (val) {
-          this.confirm_password.value = val
-          this.register_data.confirm_password = val
-        }
-      }
+      })
     },
 
     methods: {
@@ -146,7 +98,7 @@
           .then(response => {
             if(response.status === 200) {
               this.$store.dispatch('login', true)
-              this.$router.push('/')
+              this.$router.push({name: 'AdsList'})
             } else {
               console.log(response.status)
             }

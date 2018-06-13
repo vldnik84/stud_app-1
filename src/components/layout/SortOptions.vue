@@ -16,6 +16,7 @@
   export default {
     name: 'SortOptions',
 
+    // TODO Set type and required property
     props: ['options'],
 
     data: function () {

@@ -6,19 +6,24 @@
         <div class="nav-wrapper">
 
           <router-link :to="{name: 'AdsList'}">
-            <a href="#" class="brand-logo">Home</a>
+            <a class="brand-logo">Home</a>
           </router-link>
 
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
+            <li v-if="!loggedIn">
               <router-link :to="{name: 'Login'}">
-                <a href="#!">Login</a>
+                <a>Login</a>
               </router-link>
             </li>
-            <li>
+
+            <li v-if="!loggedIn">
               <router-link :to="{name: 'Register'}">
-                <a href="#!">Register</a>
+                <a>Register</a>
               </router-link>
+            </li>
+
+            <li v-if="loggedIn">
+              <a v-on:click="logout">Log out</a>
             </li>
           </ul>
 
@@ -29,7 +34,21 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    name: 'Header'
+    name: 'Header',
+
+    computed: {
+      ...mapState({
+        loggedIn: 'loginStatus'
+      })
+    },
+
+    methods: {
+      logout: function () {
+        this.$store.dispatch('login', false)
+      }
+    }
   }
 </script>

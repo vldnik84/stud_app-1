@@ -8,7 +8,7 @@
 
 
       <div class="product-single">
-        <form action="lala" class="product-form">
+        <form class="product-form" v-on:submit="formHandler">
           <div class="row">
 
 
@@ -48,13 +48,13 @@
               </div>
 
               <div class="buttons">
-                <a href="#!" class="btn waves-effect waves-light" v-on:click="save()">
+                <a class="btn waves-effect waves-light" v-on:click="save()">
                   Save
                   <i class="material-icons sufix">save</i>
                 </a>
 
                 <router-link :to="{name: 'AdsList'}">
-                  <a href="#!" class="btn waves-effect waves-light">
+                  <a class="btn waves-effect waves-light">
                     Cancel
                     <i class="material-icons sufix">cancel</i>
                   </a>
@@ -84,6 +84,9 @@
     },
 
     methods: {
+      formHandler: function (event) {
+        event.preventDefault()
+      },
       save: function () {
         this.$store.dispatch('save', {item: this.item})
           .then(() => {

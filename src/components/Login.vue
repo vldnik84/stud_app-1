@@ -5,13 +5,25 @@
       <div class="row">
         <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
 
-          <Signup v-model="loginVal"></Signup>
-          <Signup v-model="passwordVal"></Signup>
+          <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="login" type="email" class="validate"
+                   required="" aria-required="true" v-model="login_data.login">
+            <label for="login">E-mail address</label>
+            <span class="helper-text" data-error="incorrect data">enter your e-mail address</span>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="password" type="password" class="validate"
+                   required="" aria-required="true" v-model="login_data.password">
+            <label for="password">Password</label>
+            <span class="helper-text" data-error="incorrect data">enter your password</span>
+          </div>
 
           <div class="input-field">
             <button type="submit" class="btn btn-max waves-effect waves-light" v-on:click="loginAction">Submit</button>
           </div>
-          <div class="text-center"><a href="#!">Forgot your login data?</a></div>
 
         </form>
       </div>
@@ -20,30 +32,14 @@
 </template>
 
 <script>
-  import CFG from './layout/Params'
-  import Signup from './layout/Signup'
   import axios from 'axios'
   import { mapState } from 'vuex'
 
   export default {
     name: 'Login',
 
-    components: {
-      Signup
-    },
-
     data () {
       return {
-        login: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'login') {
-            return item
-          }
-        })[0],
-        password: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'password') {
-            return item
-          }
-        })[0],
         login_data: {
           login: '',
           password: ''
@@ -54,25 +50,7 @@
     computed: {
       ...mapState({
         back_address: 'backAddress'
-      }),
-      loginVal: {
-        get: function () {
-          return this.login
-        },
-        set: function (val) {
-          this.login.value = val
-          this.login_data.login = val
-        }
-      },
-      passwordVal: {
-        get: function () {
-          return this.password
-        },
-        set: function (val) {
-          this.password.value = val
-          this.login_data.password = val
-        }
-      }
+      })
     },
 
     methods: {
@@ -84,7 +62,7 @@
           .then(response => {
             if(response.status === 200) {
               this.$store.dispatch('login', true)
-              this.$router.push('/')
+              this.$router.push({name: 'AdsList'})
             } else {
               console.log(response.status)
             }

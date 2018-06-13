@@ -617,6 +617,15 @@ html[xmlns] .slides {
     background-color: #f57c00;
     color: #fff; }
 
+.product {
+  justify-content: space-between; }
+
+.product-image {
+  min-width: 10%; }
+
+.product-body {
+  min-width: 60%; }
+
 .product-title {
   font-size: 18px;
   font-weight: 700;

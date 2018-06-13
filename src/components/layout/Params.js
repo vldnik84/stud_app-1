@@ -10,35 +10,35 @@ export default {
 
   products: [
     { id: 0,
-      name: 'Samsung S7 Edge Snapdragon',
+      title: 'Samsung S7 Edge Snapdragon',
       price: 500,
-      descr: 'Beautifully designed inside and out, the Samsung Galaxy S7 edge exceeds your expectations. ' +
+      description: 'Beautifully designed inside and out, the Samsung Galaxy S7 edge exceeds your expectations. ' +
       'The slim dual-edge design ensures a great fit and feel whether in your hands or your pocket.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 1,
-      name: 'Audi Q7 2.0 TFSI',
+      title: 'Audi Q7 2.0 TFSI',
       price: 100000,
-      descr: 'The Q7 is the first Audi SUV to use very-high-speed FlexRay optical fiber data bus technology, ' +
+      description: 'The Q7 is the first Audi SUV to use very-high-speed FlexRay optical fiber data bus technology, ' +
       'which interconnects all electrical/electronic systems, particularly the latest generation ' +
       'Multi Media Interface, Adaptive Air Suspension, and the multitude of new driver assistance systems.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 2,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
+      title: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
       price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
+      description: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
       ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
       image: 'http://via.placeholder.com/150x150' },
     { id: 3,
-      name: 'ASUS GL503VM-GZ040T',
+      title: 'ASUS GL503VM-GZ040T',
       price: 2000,
-      descr: 'With up to the latest 8th Gen Intel® Core™ processors and NVIDIA® GeForce® GTX 10-Series graphics, ' +
+      description: 'With up to the latest 8th Gen Intel® Core™ processors and NVIDIA® GeForce® GTX 10-Series graphics, ' +
       'ROG Strix GL503 has all the necessary tools you need for gaming mastery. So gear up, stand your ground, and ' +
       'prepare for combat!',
       image: 'http://via.placeholder.com/150x150' },
     { id: 4,
-      name: 'Xiaomi Stratos',
+      title: 'Xiaomi Stratos',
       price: 230,
-      descr: 'Amazfit Stratos is a premium multisport GPS smartwatch with 5 ATM water resistance, VO2max fitness ' +
+      description: 'Amazfit Stratos is a premium multisport GPS smartwatch with 5 ATM water resistance, VO2max fitness ' +
       'level analysis, heart rate sensor, and transflective always-on color touch display.',
       image: 'http://via.placeholder.com/150x150' }
   ],
@@ -85,14 +85,5 @@ export default {
     { id: 2, name: '3' },
     { id: 3, name: '4' },
     { id: 4, name: '5' }
-  ],
-
-  signups: [
-    { id: 0, value: '', name: 'login', type: 'email', icon: 'account_circle', label: 'E-mail address', descr: 'enter your e-mail address' },
-    { id: 1, value: '', name: 'password', type: 'password', icon: 'vpn_key', label: 'Password', descr: 'enter your password' },
-    { id: 2, value: '', name: 'confirm_password', type: 'password', icon: 'vpn_key', label: 'Repeat password', descr: 'confirm your password' },
-    { id: 3, value: '', name: 'first_name', type: 'text', icon: 'person', label: 'First name', descr: 'enter your first name' },
-    { id: 4, value: '', name: 'last_name', type: 'text', icon: 'person', label: 'Last name', descr: 'enter your last name' },
-    { id: 5, value: '', name: 'phone', type: 'text', icon: 'phone', label: 'Phone number', descr: 'enter your phone number' }
   ]
 }

@@ -34,25 +34,44 @@
         </div>
 
         <div class="col s2 text-right">
-          <router-link :to="{name: 'AddForm'}">
-            <a href="#!" class="btn btn waves-effect waves-light">
+          <!--<router-link :to="{name: 'AddForm'}">
+            <a class="btn btn waves-effect waves-light">
               <span>Add new</span>
               <i class="material-icons sufix">add</i>
             </a>
-          </router-link>
+          </router-link>-->
         </div>
       </div>
 
-      <Products v-bind:products="CFG.products"></Products>
+
+
+      <div class="product-list">
+        <Product
+          v-for="product in list"
+          v-bind:key="product.id"
+          v-bind:single_product="product">
+        </Product>
+        <div class="divider"></div>
+      </div>
+
+      <!--<router-link :to="{name: 'AddForm', params: {id: item.id}}">{{ item.name }}</router-link>
+      <Products v-bind:products="list"></Products>-->
+
+
+
 
       <ul class="pagination">
         <!-- TODO Implement Rendering -->
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="disabled">
+          <a><i class="material-icons">chevron_left</i></a>
+        </li>
+
         <li v-for="page in CFG.pagination"
             v-bind:key="page.id"
             v-bind:class="page.id === 0 ? 'active' : 'waves-effect'">
-          <a href="#!">{{ page.name }}</a>
+          <a>{{ page.name }}</a>
         </li>
+
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
       </ul>
     </div>
@@ -69,7 +88,8 @@
   import CFG from './layout/Params'
   import Categories from './layout/Categories'
   import SortOptions from './layout/SortOptions'
-  import Products from './layout/Products'
+  import Product from './layout/Product'
+  import axios from 'axios'
   import { mapState } from 'vuex'
 
   export default {
@@ -78,37 +98,33 @@
     components: {
       Categories,
       SortOptions,
-      Products
+      Product
     },
 
     data () {
       return {
         CFG,
-
+        products: null
       }
     },
 
     computed: {
       ...mapState({
-        list: 'adsList'
+        list: 'adsList',
+        back_address: 'backAddress'
       })
     },
 
+    methods: {
+
+    },
+
     created () {
-      this.$store.dispatch('updateAdsList', function () {
-        return axios.post('http://back.loc:81/login', JSON.stringify(this.login_data), {withCredentials: true})
-          .then(response => {
-            if(response.status === 200) {
-              this.$store.dispatch('login', true)
-              this.$router.push('/')
-            } else {
-              console.log(response.status)
-            }
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      })
+      axios.get(this.back_address + 'products')
+        .then(response => this.$store.dispatch('setList', response.data.products))
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 </script>

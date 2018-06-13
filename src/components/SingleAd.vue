@@ -3,10 +3,14 @@
   <section class="middle">
     <div class="container">
       <div class="breadcrumb-wrap d-flex align-items-center">
-        <div class="col s12"><a href="#!" class="breadcrumb">First</a><a href="#!" class="breadcrumb">Second</a><a href="#!" class="breadcrumb">Third</a></div>
+        <div class="col s12">
+          <a class="breadcrumb">First</a>
+          <a class="breadcrumb">Second</a>
+          <a class="breadcrumb">Third</a>
+        </div>
       </div>
       <div class="product-single">
-        <!--<form action="" class="product-form">-->
+        <form class="product-form" v-on:submit="formHandler">
           <div class="row">
 
             <div class="col s3">
@@ -21,101 +25,71 @@
                 cleaning at the same time.its innovative design and updated spare parts can increase the machine working
                 efficiency to reach safer operation.</div>
 
-              <Signup v-model="name_val"></Signup>
-              <Signup v-model="email_val"></Signup>
-              <Signup v-model="phone_val"></Signup>
+              <div class="input-field">
+                <i class="material-icons prefix">person</i>
+                <input id="name" type="text" class="validate"
+                       required="" aria-required="true" v-model="contact_data.name">
+                <label for="name">Your name</label>
+                <span class="helper-text" data-error="incorrect data">enter your name</span>
+              </div>
+
+              <div class="input-field">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate" v-model="contact_data.email">
+                <label for="email">E-mail address</label>
+                <span class="helper-text" data-error="incorrect data">enter your e-mail address</span>
+              </div>
+
+              <div class="input-field">
+                <i class="material-icons prefix">phone</i>
+                <input id="phone" type="tel" class="validate"
+                       required="" aria-required="true" v-model="contact_data.phone">
+                <label for="phone">Phone number</label>
+                <span class="helper-text" data-error="incorrect data">enter your phone number</span>
+              </div>
 
               <div class="input-field">
                 <i class="material-icons prefix">message</i>
                 <textarea id="textarea" data-length="230" class="materialize-textarea"
-                          required="" aria-required="true" v-model="message_data.message"></textarea>
-                <label for="textarea">Message</label>
+                          required="" aria-required="true" v-model="contact_data.message"></textarea>
+                <label for="textarea">Your message</label>
                 <span class="helper-text" data-error="incorrect data">Type a message to a seller</span>
               </div>
 
-              <button v-on:click="message_action" type="submit" class="btn waves-effect waves-light">Send Message
+              <button v-on:click="contactAction" type="submit" class="btn waves-effect waves-light">Send Message
                 <i class="material-icons sufix">email</i>
               </button>
             </div>
           </div>
-        <!--</form>-->
+        </form>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-  import CFG from './layout/Params'
-  import Signup from './layout/Signup'
-
   export default {
     name: 'SingleAd',
 
-    components: {
-      Signup
-    },
-
     data () {
       return {
-        name: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'first_name') {
-            return item
-          }
-        })[0],
-        email: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'login') {
-            return item
-          }
-        })[0],
-        phone: [].filter.call(CFG['signups'], function(item) {
-          if (item.name === 'phone') {
-            return item
-          }
-        })[0],
-        message_data: {
-          email: '',
+        contact_data: {
           name: '',
-          phone: ''
-        }
-
-      }
-    },
-
-    computed: {
-      name_val: {
-        get: function () {
-          return this.name
-        },
-        set: function (val) {
-          this.name.value = val
-          this.message_data.name = val
-        }
-      },
-      email_val: {
-        get: function () {
-          return this.email
-        },
-        set: function (val) {
-          this.email.value = val
-          this.message_data.email = val
-        }
-      },
-      phone_val: {
-        get: function () {
-          return this.phone
-        },
-        set: function (val) {
-          this.phone.value = val
-          this.message_data.phone = val
+          email: '',
+          phone: '',
+          message: ''
         }
       }
     },
 
     methods: {
-      message_action: function () {
+      formHandler: function (event) {
+        event.preventDefault()
+      },
+      contactAction: function () {
         //this.message_data.message = this.message
-        return console.log(JSON.stringify(this.message_data))
-      }
+        return console.log(JSON.stringify(this.contact_data))
+      },
     }
   }
 </script>
