@@ -83,13 +83,31 @@
 
     data () {
       return {
-        CFG
+        CFG,
+
       }
     },
 
     computed: {
       ...mapState({
         list: 'adsList'
+      })
+    },
+
+    created () {
+      this.$store.dispatch('updateAdsList', function () {
+        return axios.post('http://back.loc:81/login', JSON.stringify(this.login_data), {withCredentials: true})
+          .then(response => {
+            if(response.status === 200) {
+              this.$store.dispatch('login', true)
+              this.$router.push('/')
+            } else {
+              console.log(response.status)
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
       })
     }
   }

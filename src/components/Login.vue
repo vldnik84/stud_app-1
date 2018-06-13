@@ -3,27 +3,27 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <!--<form action="" class="auth-form s4 col offset-s4">-->
+        <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
 
-          <Signup v-model="login_val"></Signup>
-          <Signup v-model="password_val"></Signup>
+          <Signup v-model="loginVal"></Signup>
+          <Signup v-model="passwordVal"></Signup>
 
           <div class="input-field">
-            <button v-on:click="login_action" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
+            <button type="submit" class="btn btn-max waves-effect waves-light" v-on:click="loginAction">Submit</button>
           </div>
           <div class="text-center"><a href="#!">Forgot your login data?</a></div>
 
-        <!--</form>-->
+        </form>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import CFG from './layout/Params'
   import Signup from './layout/Signup'
   import axios from 'axios'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'Login',
@@ -53,9 +53,9 @@
 
     computed: {
       ...mapState({
-        logged_state: 'loggedIn'
+        back_address: 'backAddress'
       }),
-      login_val: {
+      loginVal: {
         get: function () {
           return this.login
         },
@@ -64,7 +64,7 @@
           this.login_data.login = val
         }
       },
-      password_val: {
+      passwordVal: {
         get: function () {
           return this.password
         },
@@ -76,10 +76,18 @@
     },
 
     methods: {
-      login_action: function () {
-        return axios.post('http://back.loc:81/login', JSON.stringify(this.login_data), {withCredentials: true})
+      formHandler: function (event) {
+        event.preventDefault()
+      },
+      loginAction: function () {
+        return axios.post(this.back_address + 'login', JSON.stringify(this.login_data), {withCredentials: true})
           .then(response => {
-            response.status === 200 ? this.$store.dispatch('login', true) : console.log(response.status)
+            if(response.status === 200) {
+              this.$store.dispatch('login', true)
+              this.$router.push('/')
+            } else {
+              console.log(response.status)
+            }
           })
           .catch(function (error) {
             console.log(error)

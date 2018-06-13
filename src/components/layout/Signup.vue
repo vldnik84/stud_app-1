@@ -3,7 +3,7 @@
   <div class="input-field">
     <i class="material-icons prefix">{{ signup.icon }}</i>
     <input v-bind:id="signup.name" v-bind:type="signup.type" class="validate"
-           required="" aria-required="true" v-model="return_val">
+           required="" aria-required="true" v-model="returnVal">
     <label v-bind:for="signup.name">{{ signup.label }}</label>
     <span class="helper-text" data-error="incorrect data">{{ signup.descr }}</span>
   </div>
@@ -27,7 +27,7 @@
     },
 
     computed: {
-      return_val: {
+      returnVal: {
         get: function () {
           return this.signup.value
         },

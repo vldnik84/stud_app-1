@@ -30,7 +30,7 @@ export default new Router({
     },
     {
       /* Original - /ad:id(\d+) */
-      path: '/ad:id(\\d+)',
+      path: '/ad\/:id(\\d+)',
       name: 'SingleAd',
       component: SingleAd
     },

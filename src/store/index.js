@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
+    backAddress: 'http://back.loc:81/',
     adsList: [
       {
         id: '1',
@@ -57,8 +58,8 @@ const Store = new Vuex.Store({
 
       context.commit('updateAdsList', context.state.adsList)
     },
-    login (context, params) {
-      context.commit('updateLoggedState', params.data)
+    login (context, param) {
+      context.commit('updateLoggedState', param)
     }
   }
 })

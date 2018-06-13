@@ -6,7 +6,10 @@
       <div class="product-title">{{ productPr.name }}</div>
       <div class="product-price">Price: {{ productPr.price }} $</div>
       <div class="product-text">{{ productPr.descr }}</div>
-    </div><a v-on:click="clicked" href="#!" class="btn waves-effect waves-light">Contact<i class="material-icons sufix">phone</i></a>
+    </div>
+    <a v-on:click="clicked" href="#!" class="btn waves-effect waves-light">Contact
+      <i class="material-icons sufix">phone</i>
+    </a>
   </div>
 </template>
 

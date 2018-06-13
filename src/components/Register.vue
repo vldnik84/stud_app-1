@@ -3,20 +3,20 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <!--<form action="" class="auth-form s4 col offset-s4">-->
+        <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
 
-          <Signup v-model="login_val"></Signup>
-          <Signup v-model="first_name_val"></Signup>
-          <Signup v-model="last_name_val"></Signup>
-          <Signup v-model="phone_val"></Signup>
-          <Signup v-model="password_val"></Signup>
-          <Signup v-model="confirm_password_val"></Signup>
+          <Signup v-model="loginVal"></Signup>
+          <Signup v-model="firstNameVal"></Signup>
+          <Signup v-model="lastNameVal"></Signup>
+          <Signup v-model="phoneVal"></Signup>
+          <Signup v-model="passwordVal"></Signup>
+          <Signup v-model="confirmPasswordVal"></Signup>
 
           <div class="input-field">
-            <button v-on:click="register_action" type="submit" class="btn btn-max waves-effect waves-light">Register</button>
+            <button v-on:click="registerAction" type="submit" class="btn btn-max waves-effect waves-light">Register</button>
           </div>
 
-        <!--</form>-->
+        </form>
       </div>
     </div>
   </section>
@@ -25,7 +25,7 @@
 <script>
   import CFG from './layout/Params'
   import Signup from './layout/Signup'
-  //import axios from 'axios'
+  import axios from 'axios'
 
   export default {
     name: 'Register',
@@ -78,10 +78,10 @@
     },
 
     computed: {
-      /*...mapState({
-        logged_state: 'loggedIn'
-      }),*/
-      login_val: {
+      ...mapState({
+        back_address: 'backAddress'
+      }),
+      loginVal: {
         get: function () {
           return this.login
         },
@@ -90,7 +90,7 @@
           this.register_data.login = val
         }
       },
-      first_name_val: {
+      firstNameVal: {
         get: function () {
           return this.first_name
         },
@@ -99,7 +99,7 @@
           this.register_data.first_name = val
         }
       },
-      last_name_val: {
+      lastNameVal: {
         get: function () {
           return this.last_name
         },
@@ -108,7 +108,7 @@
           this.register_data.last_name = val
         }
       },
-      phone_val: {
+      phoneVal: {
         get: function () {
           return this.phone
         },
@@ -117,7 +117,7 @@
           this.register_data.phone = val
         }
       },
-      password_val: {
+      passwordVal: {
         get: function () {
           return this.password
         },
@@ -126,7 +126,7 @@
           this.register_data.password = val
         }
       },
-      confirm_password_val: {
+      confirmPasswordVal: {
         get: function () {
           return this.confirm_password
         },
@@ -138,12 +138,18 @@
     },
 
     methods: {
-      register_action: function () {
-
-        return axios.post('http://back.loc:81/register', JSON.stringify(this.register_data), {withCredentials: true})
+      formHandler: function (event) {
+        event.preventDefault()
+      },
+      registerAction: function () {
+        return axios.post(this.back_address + 'register', JSON.stringify(this.register_data), {withCredentials: true})
           .then(response => {
-            console.log(response)
-            //response.status === 200 ?  : console.log(response.status)
+            if(response.status === 200) {
+              this.$store.dispatch('login', true)
+              this.$router.push('/')
+            } else {
+              console.log(response.status)
+            }
           })
           .catch(function (error) {
             console.log(error)
