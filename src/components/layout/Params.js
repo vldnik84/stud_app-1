@@ -46,7 +46,7 @@ export default {
   categories: [
     { id: 0,
       name: 'Cars',
-      categories: [
+      subsection: [
         { id: 0, name: 'Sport' },
         { id: 1, name: 'Coupe' },
         { id: 2, name: 'Estate' }
@@ -54,7 +54,7 @@ export default {
     },
     { id: 1,
       name: 'Bags, Cases & Boxes',
-      categories: [
+      subsection: [
         { id: 0, name: 'Tin Box' },
         { id: 1, name: 'Electronic Box' },
         { id: 2, name: 'Gift Box' }
@@ -62,7 +62,7 @@ export default {
     },
     { id: 2,
       name: 'Kitchenware',
-      categories: [
+      subsection: [
         { id: 0, name: 'Food storage & organising' },
         { id: 1, name: 'Cooking accessories' },
         { id: 2, name: 'Coffee & tea makers' },
@@ -71,7 +71,7 @@ export default {
     },
     { id: 3,
       name: 'Lights & Lighting',
-      categories: [
+      subsection: [
         { id: 0, name: 'Halogen Bulb' },
         { id: 1, name: 'Led Lamp' },
         { id: 2, name: 'Outdoor Lighting' }

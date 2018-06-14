@@ -22,6 +22,17 @@
                   <input type="text" class="file-path validate">
                 </div>
               </div>
+
+              <div class="align-items-left">
+                <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
+                <i class="material-icons sufix">menu</i></a>
+                <div id="dropdown1" class="dropdown-content"><a class="right all-link">All</a>
+                  <Category v-for="section in categories"
+                            v-bind:key="section.id"
+                            v-bind:category_section="section">
+                  </Category>
+                </div>
+              </div>
             </div>
 
 
@@ -72,14 +83,20 @@
 </template>
 
 <script>
+  import Category from './layout/Category'
   import { mapState } from 'vuex'
 
   export default {
     name: 'AddForm',
 
+    components: {
+      Category
+    },
+
     computed: {
       ...mapState({
-        item: 'addItem'
+        item: 'addItem',
+        categories: 'categories'
       })
     },
 

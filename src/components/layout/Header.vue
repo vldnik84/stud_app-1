@@ -10,19 +10,19 @@
           </router-link>
 
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li v-if="!loggedIn">
+            <li v-if="loggedIn === null">
               <router-link :to="{name: 'Login'}">
                 <a>Login</a>
               </router-link>
             </li>
 
-            <li v-if="!loggedIn">
+            <li v-if="loggedIn === null">
               <router-link :to="{name: 'Register'}">
                 <a>Register</a>
               </router-link>
             </li>
 
-            <li v-if="loggedIn">
+            <li v-if="loggedIn !== null">
               <a v-on:click="logout">Log out</a>
             </li>
           </ul>
@@ -41,13 +41,13 @@
 
     computed: {
       ...mapState({
-        loggedIn: 'loginStatus'
+        loggedIn: 'loginState'
       })
     },
 
     methods: {
       logout: function () {
-        this.$store.dispatch('login', false)
+        this.$store.dispatch('login', null)
       }
     }
   }

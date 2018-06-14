@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -10,7 +9,8 @@ const Store = new Vuex.Store({
     backAddress: 'http://back.loc:81/',
     adsList: [ ],
     addItem: { },
-    loginStatus: false
+    categories: { },
+    loginState: null
   },
   mutations: {
     updateAdsList (state, data) {
@@ -19,8 +19,11 @@ const Store = new Vuex.Store({
     updateAddItem (state, data) {
       state.addItem = data
     },
-    updateLoginStatus (state, data) {
-      state.loginStatus = data
+    updateCategories (state, data) {
+      state.categories = data
+    },
+    updateLoginState (state, data) {
+      state.loginState = data
     }
   },
   actions: {
@@ -46,8 +49,23 @@ const Store = new Vuex.Store({
 
       context.commit('updateAdsList', context.state.adsList)
     },
-    login (context, param) {
-      context.commit('updateLoginStatus', param)
+    setCategories (context, params) {
+      let result = { }
+      let i = 0
+      for (let section in params) {
+        let section_list = { }
+        let j = 0
+        for (let category in params[section].children) {
+          section_list[j] = {id: params[section].children[category].id, name: params[section].children[category].name}
+          j++;
+        }
+        result[i] = {id: params[section].category.id, name: params[section].category.name, category_list: section_list}
+        i++
+      }
+      context.commit('updateCategories', result)
+    },
+    login (context, params) {
+      context.commit('updateLoginState', params)
     }
   }
 })

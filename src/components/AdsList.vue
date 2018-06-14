@@ -5,7 +5,14 @@
 
       <div class="row d-flex align-items-center">
         <div class="col s2">
-          <Categories v-bind:categories="CFG.categories"></Categories>
+          <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
+            <i class="material-icons sufix">menu</i></a>
+          <div id="dropdown1" class="dropdown-content"><a class="right all-link">All</a>
+            <Category v-for="section in categories"
+                      v-bind:key="section.id"
+                      v-bind:category_section="section">
+            </Category>
+          </div>
         </div>
 
         <div class="col s3">
@@ -34,15 +41,14 @@
         </div>
 
         <div class="col s2 text-right">
-          <!--<router-link :to="{name: 'AddForm'}">
+          <router-link :to="{name: 'AddForm'}">
             <a class="btn btn waves-effect waves-light">
               <span>Add new</span>
               <i class="material-icons sufix">add</i>
             </a>
-          </router-link>-->
+          </router-link>
         </div>
       </div>
-
 
 
       <div class="product-list">
@@ -54,14 +60,8 @@
         <div class="divider"></div>
       </div>
 
-      <!--<router-link :to="{name: 'AddForm', params: {id: item.id}}">{{ item.name }}</router-link>
-      <Products v-bind:products="list"></Products>-->
-
-
-
-
       <ul class="pagination">
-        <!-- TODO Implement Rendering -->
+        <!-- TODO -->
         <li class="disabled">
           <a><i class="material-icons">chevron_left</i></a>
         </li>
@@ -75,18 +75,12 @@
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
       </ul>
     </div>
-
-    <!--<div class="hello">
-      <div v-for="item in list" :key="item.id">
-        <router-link :to="{name: 'AddForm', params: {id: item.id}}">{{ item.name }}</router-link>
-      </div>
-    </div>-->
   </section>
 </template>
 
 <script>
   import CFG from './layout/Params'
-  import Categories from './layout/Categories'
+  import Category from './layout/Category'
   import SortOptions from './layout/SortOptions'
   import Product from './layout/Product'
   import axios from 'axios'
@@ -96,27 +90,24 @@
     name: 'AdsList',
 
     components: {
-      Categories,
+      Category,
       SortOptions,
       Product
     },
 
     data () {
       return {
-        CFG,
-        products: null
+        CFG
       }
     },
 
     computed: {
       ...mapState({
         list: 'adsList',
-        back_address: 'backAddress'
+        back_address: 'backAddress',
+        categories: 'categories',
+        loggedIn: ''
       })
-    },
-
-    methods: {
-
     },
 
     created () {

@@ -37,6 +37,11 @@ export default new Router({
     {
       /* Original - /:id(\d+) */
       path: '/:id(\\d+)',
+      name: 'ChangeForm',
+      component: AddForm
+    },
+    {
+      path: '/add',
       name: 'AddForm',
       component: AddForm
     },
@@ -46,5 +51,8 @@ export default new Router({
       component: Page404
     }
   ],
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  },
   mode: 'history'
 })

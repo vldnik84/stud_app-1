@@ -57,19 +57,14 @@
       formHandler: function (event) {
         event.preventDefault()
       },
+      // TODO Send error to Page404
       loginAction: function () {
         return axios.post(this.back_address + 'login', JSON.stringify(this.login_data), {withCredentials: true})
           .then(response => {
-            if(response.status === 200) {
-              this.$store.dispatch('login', true)
-              this.$router.push({name: 'AdsList'})
-            } else {
-              console.log(response.status)
-            }
+            this.$store.dispatch('login', response.data)
+            this.$router.push({name: 'AdsList'})
           })
-          .catch(function (error) {
-            console.log(error)
-          })
+          .catch(error => console.log(error))
       }
     }
   }
