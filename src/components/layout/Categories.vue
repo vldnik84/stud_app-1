@@ -1,8 +1,10 @@
 /* eslint-disable indent */
 <template>
   <div>
-    <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
-    <i class="material-icons sufix">menu</i></a>
+    <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">
+      Categories
+      <i class="material-icons sufix">menu</i>
+    </a>
     <div id="dropdown1" class="dropdown-content">
       <a href="#" class="right all-link" v-on:click.prevent="categoryId('1')">All</a>
       <Category v-for="section in categories"
@@ -23,13 +25,6 @@
 
     components: {
       Category
-    },
-
-    data: function () {
-      // FIXME sections is empty
-      return {
-        sections: this.all_categories
-      }
     },
 
     computed: {

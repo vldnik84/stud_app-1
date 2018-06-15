@@ -33,7 +33,9 @@
                 </label>
               </div>
 
-              <Categories v-bind:all_categories="categories" v-on:click="categoryId"></Categories>
+              <div class="left-align">
+                <Categories></Categories>
+              </div>
             </div>
 
 
@@ -42,7 +44,7 @@
                 <i class="material-icons prefix">title</i>
                 <input id="title" type="text" class="validate"
                        required="" aria-required="true" v-model="item.title">
-                <label for="title">Title</label>
+                <label class="active" for="title">Title</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's title</span>
               </div>
 
@@ -50,7 +52,7 @@
                 <i class="material-icons prefix">attach_money</i>
                 <input id="price" type="number" class="validate"
                        required="" aria-required="true" v-model="item.price">
-                <label for="price">Price</label>
+                <label class="active" for="price">Price</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's price</span>
               </div>
 
@@ -58,7 +60,7 @@
                 <i class="material-icons prefix">info_outline</i>
                 <textarea id="descr" data-length="230" class="materialize-textarea validate"
                           required="" aria-required="true" v-model="item.description"></textarea>
-                <label for="descr">Description</label>
+                <label class="active" for="descr">Description</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's description</span>
               </div>
 
@@ -99,7 +101,8 @@
 
     computed: {
       ...mapState({
-        item: 'addItem'
+        item: 'addItem',
+        selected_category: 'categoryId'
       }),
       checked: {
         get: function () {
@@ -114,6 +117,8 @@
     methods: {
       save: function () {
         // TODO Implement validator
+        this.item.category_id = this.category_id
+
         console.log(this.item)
 
         this.$store.dispatch('save', {item: this.item})

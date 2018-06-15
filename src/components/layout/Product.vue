@@ -57,14 +57,8 @@
             .catch(error => console.log(error))
         }
       },
-      // TODO
-      /*formAction: function () {
-        if (this.loggedIn) {
-
-        }
-      },*/
       clicked: function () {
-        return console.log('123')
+        this.$router.push({name: 'SingleAd', params: {id: this.product.id}})
       }
     }
   }

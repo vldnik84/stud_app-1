@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 <template>
-  <div>
-    <select v-model="selected">
-      <option v-for="option in this.options"
+  <div class="input-field">
+    <select v-model="sortOption">
+      <option v-for="option in sort_options"
               v-bind:key="option.id"
-              v-bind:value="option.id === 0 ? true : option.id"
-              v-bind:disabled="option.id === 0"
-              v-bind:selected="option.id === 0">{{ option.name }}</option>
+              v-bind:value="option.id">
+        {{ option.name }}
+      </option>
     </select>
-    <label>Materialize Select</label>
+    <label>Sort by</label>
   </div>
 </template>
 
@@ -16,13 +16,30 @@
   export default {
     name: 'SortOptions',
 
-    // TODO Set type and required property
-    props: ['options'],
+    props: {
+      options: {
+        type: Array,
+        required: true
+      }
+    },
 
     data: function () {
       return {
         /* TODO move to state */
-        selected: ''
+        selected: 0,
+        sort_options: this.options
+      }
+    },
+
+    computed: {
+      sortOption: {
+        get: function () {
+          return this.selected
+        },
+        set: function (value) {
+          this.selected = value
+          this.$store.dispatch('setSortBy', value)
+        }
       }
     }
   }

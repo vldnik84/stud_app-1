@@ -87,6 +87,10 @@
         //this.message_data.message = this.message
         return console.log(JSON.stringify(this.contact_data))
       },
+    },
+
+    created () {
+      this.$store.dispatch('loadById', {id: this.$route.params.id})
     }
   }
 </script>

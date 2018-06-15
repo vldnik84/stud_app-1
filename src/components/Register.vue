@@ -95,9 +95,12 @@
         return axios.post(this.back_address + 'register', JSON.stringify(this.register_data), {withCredentials: true})
           .then(response => {
             this.$store.dispatch('login', response.data)
-            this.$router.push({name: 'AdsList'})
+            this.goBack()
           })
           .catch(error => console.log(error))
+      },
+      goBack: function () {
+        window.history.length > 1 ? this.$router.go(-1) : this.$router.push({name: 'AdsList'})
       }
     }
   }
