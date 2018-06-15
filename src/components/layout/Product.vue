@@ -4,7 +4,7 @@
     <div class="product-image"><img v-bind:src="product.image" alt=""></div>
     <div class="product-body">
       <div class="product-title">
-        <a href="" v-on:click="hrefHandler">{{ product.title }}</a>
+        <a href="" v-on:click.prevent="productHandler">{{ product.title }}</a>
       </div>
       <div class="product-price">Price: {{ product.price }} $</div>
       <div class="product-text">{{ product.description }}</div>
@@ -44,14 +44,12 @@
 
     methods: {
       // TODO Send errors to Page404
-      hrefHandler: function (event) {
-        event.preventDefault()
+      productHandler: function () {
         if (this.loggedIn !== null) {
           axios.post(this.back_address + 'product/' + this.product.id, JSON.stringify({token: this.loggedIn}), {withCredentials: true})
             .then(response => {
-              console.log(response.data)
               if (response.data.access) {
-                this.$router.push({name: 'ChangeForm', params: {id: this.product.id}})
+                this.$router.push({name: 'ChangeForm', params: response.data.product})
               } else {
                 this.$router.push({name: 'SingleAd', params: {id: this.product.id}})
               }
@@ -71,17 +69,3 @@
     }
   }
 </script>
-
-/*
-
-this.$router.push({name: 'AddForm', params: {id: this.single_product.id}})
-
-
-this.$store.dispatch('login', response.data)
-this.$router.push({name: 'AdsList'})
-}
-
-*/
-
-
-<!--<router-link v-if="loggedIn !== null" v-bind:to="{name: 'AddForm', params: {id: product.id}}">{{ product.title }}</router-link>-->

@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 <template>
   <div class="dropdown-section text-align-left">
-    <h1 class="dropdown-title"><a>{{ section.name }}</a></h1>
+    <h1 class="dropdown-title"><a href="#" v-on:click.prevent="categoryId(section.id)">{{ section.name }}</a></h1>
     <ul class="dropdown-list">
       <li v-for="category in section.category_list"
           v-bind:key="category.id">
-        <a>{{ category.name }}</a>
+        <a href="#" v-on:click.prevent="categoryId(category.id)">{{ category.name }}</a>
       </li>
     </ul>
   </div>
@@ -25,6 +25,12 @@
     data () {
       return {
         section: this.category_section
+      }
+    },
+
+    methods: {
+      categoryId: function (value) {
+        this.$emit('click', value)
       }
     }
   }

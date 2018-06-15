@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="product-single">
-        <form class="product-form" v-on:submit="formHandler">
+        <form class="product-form" v-on:submit.prevent>
           <div class="row">
 
             <div class="col s3">
@@ -83,9 +83,6 @@
     },
 
     methods: {
-      formHandler: function (event) {
-        event.preventDefault()
-      },
       contactAction: function () {
         //this.message_data.message = this.message
         return console.log(JSON.stringify(this.contact_data))

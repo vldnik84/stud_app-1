@@ -3,7 +3,7 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
+        <form class="auth-form s4 col offset-s4" v-on:submit.prevent>
 
           <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
@@ -90,9 +90,6 @@
     },
 
     methods: {
-      formHandler: function (event) {
-        event.preventDefault()
-      },
       // TODO Send error to Page404
       registerAction: function () {
         return axios.post(this.back_address + 'register', JSON.stringify(this.register_data), {withCredentials: true})

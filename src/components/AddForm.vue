@@ -8,7 +8,7 @@
 
 
       <div class="product-single">
-        <form class="product-form" v-on:submit="formHandler">
+        <form class="product-form" v-on:submit.prevent>
           <div class="row">
 
 
@@ -19,41 +19,45 @@
                 </div>
 
                 <div class="file-path-wrapper">
-                  <input type="text" class="file-path validate">
+                  <input type="text" class="file-path validate"
+                         required="" aria-required="true" v-model="item.image">
                 </div>
               </div>
 
-              <div class="align-items-left">
-                <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
-                <i class="material-icons sufix">menu</i></a>
-                <div id="dropdown1" class="dropdown-content"><a class="right all-link">All</a>
-                  <Category v-for="section in categories"
-                            v-bind:key="section.id"
-                            v-bind:category_section="section">
-                  </Category>
-                </div>
+              <div class="switch">
+                <label>
+                  Inactive
+                  <input type="checkbox" v-model="checked">
+                  <span class="lever"></span>
+                  Active
+                </label>
               </div>
+
+              <Categories v-bind:all_categories="categories" v-on:click="categoryId"></Categories>
             </div>
 
 
             <div class="col s8">
               <div class="input-field">
                 <i class="material-icons prefix">title</i>
-                <input id="title" type="text" class="validate" v-model="item.name">
+                <input id="title" type="text" class="validate"
+                       required="" aria-required="true" v-model="item.title">
                 <label for="title">Title</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's title</span>
               </div>
 
               <div class="input-field">
                 <i class="material-icons prefix">attach_money</i>
-                <input id="price" type="number" class="validate">
+                <input id="price" type="number" class="validate"
+                       required="" aria-required="true" v-model="item.price">
                 <label for="price">Price</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's price</span>
               </div>
 
               <div class="input-field">
                 <i class="material-icons prefix">info_outline</i>
-                <textarea id="descr" data-length="230" class="materialize-textarea validate"></textarea>
+                <textarea id="descr" data-length="230" class="materialize-textarea validate"
+                          required="" aria-required="true" v-model="item.description"></textarea>
                 <label for="descr">Description</label>
                 <span class="helper-text" data-error="incorrect data">Enter item's description</span>
               </div>
@@ -83,28 +87,35 @@
 </template>
 
 <script>
-  import Category from './layout/Category'
+  import Categories from './layout/Categories'
   import { mapState } from 'vuex'
 
   export default {
     name: 'AddForm',
 
     components: {
-      Category
+      Categories
     },
 
     computed: {
       ...mapState({
-        item: 'addItem',
-        categories: 'categories'
-      })
+        item: 'addItem'
+      }),
+      checked: {
+        get: function () {
+          return (this.item.active === '1' || this.item.active === undefined)
+        },
+        set: function (value) {
+          value ? this.item.active = '1' : this.item.active = '0'
+        }
+      }
     },
 
     methods: {
-      formHandler: function (event) {
-        event.preventDefault()
-      },
       save: function () {
+        // TODO Implement validator
+        console.log(this.item)
+
         this.$store.dispatch('save', {item: this.item})
           .then(() => {
             this.$router.push({name: 'AdsList'})
