@@ -10,8 +10,6 @@ const Store = new Vuex.Store({
     adsList: [ ],
     addItem: { },
     categories: [ ],
-    categoryId: '1',
-    sortBy: '0',
     loginState: null
   },
   mutations: {
@@ -23,12 +21,6 @@ const Store = new Vuex.Store({
     },
     updateCategories (state, data) {
       state.categories = data
-    },
-    updateCategoryId (state, data) {
-      state.categoryId = data
-    },
-    updateSortBy (state, data) {
-      state.sortBy = data
     },
     updateLoginState (state, data) {
       state.loginState = data
@@ -71,12 +63,6 @@ const Store = new Vuex.Store({
         i++
       }
       context.commit('updateCategories', result)
-    },
-    setCategoryId (context, params) {
-      context.commit('updateCategoryId', params)
-    },
-    setSortBy (context, params) {
-      context.commit('updateSortBy', params)
     },
     login (context, params) {
       context.commit('updateLoginState', params)

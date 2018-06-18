@@ -16,6 +16,10 @@
     name: 'Category',
 
     props: {
+      value: {
+        type: Number,
+        required: true
+      },
       category_section: {
         type: Object,
         required: true
@@ -24,13 +28,14 @@
 
     data () {
       return {
-        section: this.category_section
+        section: this.category_section,
+        category_id: this.value
       }
     },
 
     methods: {
       categoryId: function (value) {
-        this.$emit('click', value)
+        this.$emit('input', Number.parseInt(value))
       }
     }
   }

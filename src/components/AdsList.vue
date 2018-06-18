@@ -5,7 +5,7 @@
 
       <div class="row d-flex align-items-center">
         <div class="col s2">
-          <Categories></Categories>
+          <Categories v-bind:all="true" v-model="category_id"></Categories>
         </div>
 
         <div class="col s3">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col s3">
-          <SortOptions v-bind:options="CFG.sortOptions"></SortOptions>
+          <SortOptions v-bind:sort_options="CFG.sortOptions" v-model="sorted_by"></SortOptions>
         </div>
 
         <div class="col s2 text-right">
@@ -90,7 +90,9 @@
 
     data () {
       return {
-        CFG
+        CFG,
+        sorted_by: 0,
+        category_id: 1
       }
     },
 
@@ -102,6 +104,32 @@
       })
     },
 
+    // beforeRouteEnter (to, from, next) {
+      // console.log(to)
+      // console.log(from)
+      // next(vm => {
+      //   vm.$forceUpdate()
+      //   console.log('beforeEnter')
+      //   console.log(vm)
+      //   if (from.name !== null) {
+      //     console.log(vm)
+      //     vm.$destroy()
+      //     console.log(vm)
+      //   }
+      // console.log(vm)
+      //    экземпляр компонента доступен как `vm`
+      // })
+    // },
+
+    // beforeRouteLeave (to, from, next) {
+      // console.log('beforeDestroy')
+      // console.log(this)
+      // this.$destroy()
+      // console.log('afterDestroy')
+      // console.log(this)
+      // next(true)
+    // },
+
     created () {
       axios.get(this.back_address + 'products')
         .then(response => this.$store.dispatch('setList', response.data.products))
@@ -109,5 +137,12 @@
           console.log(error)
         })
     }
+
+    // beforeUpdate () {
+      // this.$forceUpdate()
+
+      // console.log('beforeUpdate')
+      // console.log(this)
+    // }
   }
 </script>

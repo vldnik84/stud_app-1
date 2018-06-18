@@ -3,7 +3,7 @@
   <section class="middle">
     <div class="container">
       <div class="breadcrumb-wrap d-flex align-items-center">
-        <div class="col s12 breadcrumb">Ad Id: {{ $route.params.id }}</div>
+        <div class="col s12 breadcrumb">{{ $route.params.id ? 'Ad Id: ' + $route.params.id : 'New Ad: ' + item.title }}</div>
       </div>
 
 
@@ -24,6 +24,7 @@
                 </div>
               </div>
 
+              <br>
               <div class="switch">
                 <label>
                   Inactive
@@ -33,8 +34,9 @@
                 </label>
               </div>
 
+              <br>
               <div class="left-align">
-                <Categories></Categories>
+                <Categories v-bind:all="false" v-model="category_id"></Categories>
               </div>
             </div>
 
@@ -99,6 +101,12 @@
       Categories
     },
 
+    data () {
+      return {
+        category_id: 0
+      }
+    },
+
     computed: {
       ...mapState({
         item: 'addItem',
@@ -116,7 +124,9 @@
 
     methods: {
       save: function () {
-        // TODO Implement validator
+
+        // TODO Implement validator on category_id
+
         this.item.category_id = this.category_id
 
         console.log(this.item)

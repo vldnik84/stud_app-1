@@ -16,7 +16,8 @@ export default new Router({
     {
       path: '/',
       name: 'AdsList',
-      component: AdsList
+      component: AdsList,
+      meta: { reuse: false }
     },
     {
       path: '/login',
