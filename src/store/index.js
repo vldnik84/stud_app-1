@@ -12,6 +12,7 @@ const Store = new Vuex.Store({
     categories: [ ],
     loginState: null
   },
+
   mutations: {
     updateAdsList (state, data) {
       state.adsList = data
@@ -26,11 +27,12 @@ const Store = new Vuex.Store({
       state.loginState = data
     }
   },
+
   actions: {
-    /* original - context.commit('updateAdsList', params.data) */
     setList (context, params) {
       context.commit('updateAdsList', params)
     },
+
     loadById (context, params) {
       context.state.adsList.forEach(item => {
         if (item.id === params.id) {
@@ -40,6 +42,7 @@ const Store = new Vuex.Store({
         }
       })
     },
+
     save (context, params) {
       context.state.adsList.forEach(item => {
         if (item.id === params.item.id) {
@@ -49,6 +52,7 @@ const Store = new Vuex.Store({
 
       context.commit('updateAdsList', context.state.adsList)
     },
+
     setCategories (context, params) {
       let result = { }
       let i = 0
@@ -56,14 +60,22 @@ const Store = new Vuex.Store({
         let section_list = { }
         let j = 0
         for (let category in params[section].children) {
-          section_list[j] = {id: params[section].children[category].id, name: params[section].children[category].name}
+          section_list[j] = { id: Number(params[section].children[category].id),
+            name: params[section].children[category].name,
+            level: Number(params[section].children[category].level)
+          }
           j++;
         }
-        result[i] = {id: params[section].category.id, name: params[section].category.name, category_list: section_list}
+        result[i] = { id: Number(params[section].category.id),
+          name: params[section].category.name,
+          level: Number(params[section].category.level),
+          category_list: section_list
+        }
         i++
       }
       context.commit('updateCategories', result)
     },
+
     login (context, params) {
       context.commit('updateLoginState', params)
     }

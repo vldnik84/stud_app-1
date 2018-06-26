@@ -1,16 +1,16 @@
 /* eslint-disable indent */
 <template>
   <div class="product text-align-left">
-    <div class="product-image"><img v-bind:src="product.image" alt=""></div>
+    <div class="product-image"><img :src="product.image" alt=""></div>
     <div class="product-body">
       <div class="product-title">
-        <a href="" v-on:click.prevent="productHandler">{{ product.title }}</a>
+        <a href="#" @click.prevent="productHandler">{{ product.title }}</a>
       </div>
       <div class="product-price">Price: {{ product.price }} $</div>
       <div class="product-text">{{ product.description }}</div>
     </div>
-    <a v-on:click="clicked" class="btn waves-effect waves-light contact">Contact
-      <i class="material-icons sufix">phone</i>
+    <a href="#" class="btn waves-effect waves-light contact" v-if="!product.empty" @click.prevent="productHandler">Contact
+      <i class="material-icons suffix">phone</i>
     </a>
   </div>
 </template>
@@ -23,7 +23,7 @@
     name: 'Product',
 
     props: {
-      single_product: {
+      value: {
         type: Object,
         required: true
       }
@@ -31,7 +31,7 @@
 
     data () {
       return {
-        product: this.single_product
+        product: this.value
       }
     },
 
@@ -49,16 +49,15 @@
           axios.post(this.back_address + 'product/' + this.product.id, JSON.stringify({token: this.loggedIn}), {withCredentials: true})
             .then(response => {
               if (response.data.access) {
-                this.$router.push({name: 'ChangeForm', params: response.data.product})
+                this.$router.push({name: 'ChangeForm', params: {id: this.product.id}})
               } else {
                 this.$router.push({name: 'SingleAd', params: {id: this.product.id}})
               }
             })
             .catch(error => console.log(error))
+        } else {
+          this.$router.push({name: 'SingleAd', params: {id: this.product.id}})
         }
-      },
-      clicked: function () {
-        this.$router.push({name: 'SingleAd', params: {id: this.product.id}})
       }
     }
   }

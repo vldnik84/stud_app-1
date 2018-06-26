@@ -5,15 +5,15 @@
 
       <div class="row d-flex align-items-center">
         <div class="col s2">
-          <Categories v-bind:all="true" v-model="category_id"></Categories>
+          <Categories v-bind:all="true" v-model="categoryId"></Categories>
         </div>
 
         <div class="col s3">
-          <form class="search-form">
+          <form class="search-form" v-on:submit.prevent="sortList">
             <div class="input-field">
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Search</label>
-              <i class="material-icons sufix">search</i>
+              <i class="material-icons suffix">search</i>
+              <input id="search" type="text" class="validate" v-model="search">
+              <label for="search">Search</label>
             </div>
           </form>
         </div>
@@ -22,7 +22,7 @@
           <div class="switch">
             <label>
               Inactive
-              <input type="checkbox">
+              <input type="checkbox" v-model="isActive">
               <span class="lever"></span>
               Active
             </label>
@@ -30,43 +30,30 @@
         </div>
 
         <div class="col s3">
-          <SortOptions v-bind:sort_options="CFG.sortOptions" v-model="sorted_by"></SortOptions>
+          <SortOptions v-bind:prop_options="CFG.sort_options" v-model="sortBy"></SortOptions>
         </div>
 
         <div class="col s2 text-right">
           <router-link :to="{name: 'AddForm'}">
             <a class="btn btn waves-effect waves-light">
               <span>Add new</span>
-              <i class="material-icons sufix">add</i>
+              <i class="material-icons suffix">add</i>
             </a>
           </router-link>
         </div>
       </div>
 
-
       <div class="product-list">
         <Product
           v-for="product in list"
           v-bind:key="product.id"
-          v-bind:single_product="product">
+          v-bind:value="product">
         </Product>
+        <Product v-if="!Array.isArray(list) || !list.length" v-bind:value="CFG.empty_product"></Product>
         <div class="divider"></div>
       </div>
 
-      <ul class="pagination">
-        <!-- TODO -->
-        <li class="disabled">
-          <a><i class="material-icons">chevron_left</i></a>
-        </li>
-
-        <li v-for="page in CFG.pagination"
-            v-bind:key="page.id"
-            v-bind:class="page.id === 0 ? 'active' : 'waves-effect'">
-          <a>{{ page.name }}</a>
-        </li>
-
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-      </ul>
+      <Pagination v-if="pages > 1" v-bind:prop_pages="pages" v-model="currentPage"></Pagination>
     </div>
   </section>
 </template>
@@ -75,6 +62,7 @@
   import CFG from './layout/Params'
   import Categories from './layout/Categories'
   import SortOptions from './layout/SortOptions'
+  import Pagination from './layout/Pagination'
   import Product from './layout/Product'
   import axios from 'axios'
   import { mapState } from 'vuex'
@@ -85,14 +73,19 @@
     components: {
       Categories,
       SortOptions,
+      Pagination,
       Product
     },
 
     data () {
       return {
         CFG,
-        sorted_by: 0,
-        category_id: 1
+        sort_by: 'newest',
+        category_id: 1,
+        active: 1,
+        pages: 0,
+        current_page: 1,
+        search: ''
       }
     },
 
@@ -101,48 +94,66 @@
         list: 'adsList',
         back_address: 'backAddress',
         loggedIn: ''
-      })
+      }),
+      categoryId: {
+        get: function () {
+          return this.category_id
+        },
+        set: function (value) {
+          this.category_id = value
+          this.sortList()
+        }
+      },
+      sortBy: {
+        get: function () {
+          return this.sort_by
+        },
+        set: function (value) {
+          this.sort_by = value
+          this.sortList()
+        }
+      },
+      isActive: {
+        get: function () {
+          return this.active
+        },
+        set: function (value) {
+          this.active = Number(value)
+          this.sortList()
+        }
+      },
+      currentPage: {
+        get: function () {
+          return this.current_page
+        },
+        set: function (value) {
+          this.current_page = Number(value)
+          this.sortList()
+        }
+      }
     },
 
-    // beforeRouteEnter (to, from, next) {
-      // console.log(to)
-      // console.log(from)
-      // next(vm => {
-      //   vm.$forceUpdate()
-      //   console.log('beforeEnter')
-      //   console.log(vm)
-      //   if (from.name !== null) {
-      //     console.log(vm)
-      //     vm.$destroy()
-      //     console.log(vm)
-      //   }
-      // console.log(vm)
-      //    экземпляр компонента доступен как `vm`
-      // })
-    // },
+    methods: {
+      sortList: function () {
 
-    // beforeRouteLeave (to, from, next) {
-      // console.log('beforeDestroy')
-      // console.log(this)
-      // this.$destroy()
-      // console.log('afterDestroy')
-      // console.log(this)
-      // next(true)
-    // },
+        let other = '?state=1' +
+          '&sort_by=' + this.sort_by +
+          '&category_id=' + this.category_id +
+          '&page=' + this.current_page +
+          '&active=' + this.active +
+          '&search=' + this.search
+
+        axios.get(this.back_address + 'products' + other)
+          .then(response => {
+            this.pages = response.data.pages
+            this.$store.dispatch('setList', response.data.products)
+          })
+          .catch(error => console.log(error))
+      }
+    },
 
     created () {
-      axios.get(this.back_address + 'products')
-        .then(response => this.$store.dispatch('setList', response.data.products))
-        .catch(function (error) {
-          console.log(error)
-        })
+      this.sortList()
     }
-
-    // beforeUpdate () {
-      // this.$forceUpdate()
-
-      // console.log('beforeUpdate')
-      // console.log(this)
-    // }
   }
 </script>

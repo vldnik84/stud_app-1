@@ -3,7 +3,7 @@
   <div>
     <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">
       Categories
-      <i class="material-icons sufix">menu</i>
+      <i class="material-icons suffix">menu</i>
     </a>
     <div id="dropdown1" class="dropdown-content">
       <a href="#" class="right all-link" v-if="all" v-on:click.prevent="categoryId(1)">All</a>
@@ -53,7 +53,6 @@
 
     methods: {
       categoryId: function (value) {
-        console.log(this.$parent)
         this.category_id = Number.parseInt(value)
         this.$emit('input', this.category_id)
       }

@@ -69,13 +69,13 @@
               <div class="buttons">
                 <a class="btn waves-effect waves-light" v-on:click="save()">
                   Save
-                  <i class="material-icons sufix">save</i>
+                  <i class="material-icons suffix">save</i>
                 </a>
 
                 <router-link :to="{name: 'AdsList'}">
                   <a class="btn waves-effect waves-light">
                     Cancel
-                    <i class="material-icons sufix">cancel</i>
+                    <i class="material-icons suffix">cancel</i>
                   </a>
                 </router-link>
               </div>
