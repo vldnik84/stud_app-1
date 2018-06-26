@@ -1,9 +1,11 @@
+/* eslint-disable indent */
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import AddsList from '@/components/AddsList'
+import AdsList from '@/components/AdsList'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import SingleAdd from '@/components/SingleAdd'
+import SingleAd from '@/components/SingleAd'
 import AddForm from '@/components/AddForm'
 import Page404 from '@/components/Page404'
 
@@ -13,8 +15,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'AddsList',
-      component: AddsList
+      name: 'AdsList',
+      component: AdsList,
+      meta: { reuse: false }
     },
     {
       path: '/login',
@@ -27,12 +30,20 @@ export default new Router({
       component: Register
     },
     {
-      path: '/add:id(\\d+)',
-      name: 'SingleAdd',
-      component: SingleAdd
+      /* Original - /ad:id(\d+) */
+      path: '/ad/:id(\\d+)',
+      name: 'SingleAd',
+      component: SingleAd,
+      meta: { reuse: false }
     },
     {
+      /* Original - /:id(\d+) */
       path: '/:id(\\d+)',
+      name: 'ChangeForm',
+      component: AddForm
+    },
+    {
+      path: '/add',
       name: 'AddForm',
       component: AddForm
     },
@@ -42,5 +53,8 @@ export default new Router({
       component: Page404
     }
   ],
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  },
   mode: 'history'
 })

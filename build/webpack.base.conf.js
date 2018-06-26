@@ -24,7 +24,7 @@ module.exports = {
   entry: {
     app: './src/main.js',
     styles: [
-        './src/assets/app.css',
+        './src/assets/styles/app.css',
     ]
   },
   output: {
