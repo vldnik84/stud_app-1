@@ -24,8 +24,13 @@ module.exports = {
   entry: {
     app: './src/main.js',
     styles: [
-        './src/assets/styles/app.css',
+        './src/assets/styles/materialize.min.css',
+        './src/assets/styles/layout.css'
     ]
+/*    scripts: [
+        './src/assets/scripts/materialize.min.js',
+        './src/assets/scripts/layout.js'
+    ]*/
   },
   output: {
     path: config.build.assetsRoot,

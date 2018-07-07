@@ -6,6 +6,13 @@ import router from './router'
 
 import store from '@/store'
 
+//import layout from './assets/scripts/layout'
+import './assets/scripts/layout'
+//Vue.use(layout)
+
+
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

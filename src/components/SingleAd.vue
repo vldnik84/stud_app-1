@@ -63,7 +63,8 @@
       return {
         fields: CFG.input_fields.filter(item => (item.name !== 'message')),
         message_field: CFG.input_fields.filter(item => (item.name === 'message')),
-        contact_info: [ ]
+        contact_info: [ ],
+        results: [ ]
       }
     },
 
@@ -86,27 +87,51 @@
         }
 
         console.log(this.contact_info)
-        // TODO add message system (DB, back, etc)
+        // TODO Add message system (DB, back, etc)
       },
       getCategory: function () {
 
-        let findObjectByLabel = function(obj, label) {
-          if(obj.label === label) {
-            return obj;
-          }
-          for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              let foundLabel = findObjectByLabel(obj[key], label)
-              if (foundLabel) {
-                return foundLabel;
-              }
+        const findKeyValue = (obj, res, fkey, fvalue, found) => {
+          let obj_keys = Object.keys(obj)
+          let objects = [ ]
+          let newObj = { }
+
+          for (let i = 0; i < obj_keys.length; i += 1) {
+            let key = obj_keys[i]
+            if (obj[key] && typeof obj[key] === 'object') {
+              objects.push(obj[key])
+            } else {
+              newObj = { ...newObj, [key]: obj[key] }
             }
           }
-          return null;
+
+          if (newObj.hasOwnProperty(fkey) && newObj[fkey] === fvalue) {
+            console.log('object is', obj, ' newObj is', newObj)
+            res.push(newObj)
+            found = true
+            return found
+          }
+
+          if (!found) {
+            for (let object of objects) {
+              console.log('1')
+              if (findKeyValue(object, res, fkey, fvalue, found)) {
+                console.log('2')
+                break
+              } else {
+                console.log('3')
+                findKeyValue(object, res, fkey, fvalue, found)
+              }
+              objects.shift()
+            }
+          }
         }
 
-        let label = 'category_id'
-        console.log(findObjectByLabel(this.categories, label))
+        let result = [ ]
+        findKeyValue(this.categories, result, 'id', 4, false)
+        // this.results = result.filter(() => true)
+        console.log(result)
+
 
 
 
